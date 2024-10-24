@@ -9,8 +9,16 @@ COPY . .
 # installing requirements
 RUN apt-get update 
 RUN apt-get install ffmpeg -y
+
+# requirement
 RUN pip install --upgrade pip 
 RUN pip install -r ./requirements.txt 
+
+# nvidia
+RUN pip install --upgrade setuptools pip wheel
+RUN pip install nvidia-pyindex
+RUN pip install nvidia-cuda-runtime-cu12
+RUN pip install onnxruntime-gpu==1.15.1
 
 # launching gradio app 
 ENV GRADIO_SERVER_NAME="0.0.0.0"
